@@ -46,58 +46,34 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.CREATED).body(responseJson);
     }
 
-    /* ACTUALIZAR
+    //ACTUALIZAR
     @PutMapping(value = {"", "/"}, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public ResponseEntity<HashMap<String, Object>> actualizar(Product productRecibido) {
+    public ResponseEntity<HashMap<String, Object>> actualizar(Juegos productRecibido) {
 
         HashMap<String, Object> rpta = new HashMap<>();
 
         if (productRecibido.getId() != null && productRecibido.getId() > 0) {
 
-            Optional<Product> byId = productRepository.findById(productRecibido.getId());
+            Optional<Juegos> byId = juegosRepository.findById(productRecibido.getId());
             if (byId.isPresent()) {
-                Product productFromDb = byId.get();
+                Juegos productFromDb = byId.get();
 
-                if (productRecibido.getProductName() != null)
+                /*if (productRecibido.getJuegosName() != null)
                     productFromDb.setProductName(productRecibido.getProductName());
-
-                if (productRecibido.getUnitPrice() != null)
-                    productFromDb.setUnitPrice(productRecibido.getUnitPrice());
-
-                if (productRecibido.getUnitsInStock() != null)
-                    productFromDb.setUnitsInStock(productRecibido.getUnitsInStock());
-
-                if (productRecibido.getUnitsOnOrder() != null)
-                    productFromDb.setUnitsOnOrder(productRecibido.getUnitsOnOrder());
-
-                if (productRecibido.getSupplier() != null)
-                    productFromDb.setSupplier(productRecibido.getSupplier());
-
-                if (productRecibido.getCategory() != null)
-                    productFromDb.setCategory(productRecibido.getCategory());
-
-                if (productRecibido.getQuantityPerUnit() != null)
-                    productFromDb.setQuantityPerUnit(productRecibido.getQuantityPerUnit());
-
-                if (productRecibido.getReorderLevel() != null)
-                    productFromDb.setReorderLevel(productRecibido.getReorderLevel());
-
-                if (productRecibido.getDiscontinued() != null)
-                    productFromDb.setDiscontinued(productRecibido.getDiscontinued());
-
-                productRepository.save(productFromDb);
+                */
+                juegosRepository.save(productFromDb);
                 rpta.put("result", "ok");
                 return ResponseEntity.ok(rpta);
             } else {
                 rpta.put("result", "error");
-                rpta.put("msg", "El ID del producto enviado no existe");
+                rpta.put("msg", "parámetros incorrectos");
                 return ResponseEntity.badRequest().body(rpta);
             }
         } else {
             rpta.put("result", "error");
-            rpta.put("msg", "debe enviar un producto con ID");
+            rpta.put("msg", "parámetros incorrectos");
             return ResponseEntity.badRequest().body(rpta);
         }
-    }*/
+    }
 
 }
